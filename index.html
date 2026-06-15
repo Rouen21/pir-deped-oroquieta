@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PIR Dashboard — DepEd Oroquieta City</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="header-text">
+      <h1>Program Implementation Review</h1>
+      <p>Schools Division of Oroquieta City · Misamis Occidental</p>
+    </div>
+  </header>
+
+  <main class="dashboard">
+    <aside class="sidebar">
+      <ul id="school-list" class="school-list"></ul>
+    </aside>
+
+    <section class="map-panel">
+      <div class="map-toolbar">
+        <span class="map-title">School Locations</span>
+        <div class="map-legend">
+          <span class="legend-item"><span class="dot dot-integrated"></span> Integrated School</span>
+          <span class="legend-item"><span class="dot dot-elementary"></span> Elementary School</span>
+        </div>
+      </div>
+      <div id="map-container" class="map-container"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Department of Education — Schools Division of Oroquieta City, Misamis Occidental, Philippines</p>
+  </footer>
+
+  <div id="loading-overlay" class="loading-overlay hidden" aria-hidden="true">
+    <div class="loading-content">
+      <div class="loading-spinner"></div>
+      <p class="loading-text">Opening school...</p>
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="script.js"></script>
+</body>
+</html>
