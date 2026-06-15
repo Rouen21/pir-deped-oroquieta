@@ -106,6 +106,15 @@ function initMap() {
   });
 
   map.fitBounds(bounds, { padding: [40, 40] });
+
+  window.addEventListener("resize", handleMapResize);
+  window.addEventListener("orientationchange", () => {
+    setTimeout(handleMapResize, 300);
+  });
+}
+
+function handleMapResize() {
+  if (map) map.invalidateSize();
 }
 
 function showLoading() {
@@ -132,4 +141,5 @@ document.addEventListener("DOMContentLoaded", () => {
   renderSchoolList();
   initMap();
   initPopupNavigation();
+  setTimeout(handleMapResize, 150);
 });
