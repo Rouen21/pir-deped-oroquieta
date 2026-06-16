@@ -30,10 +30,8 @@ function createIcon(type, highlighted = false) {
 }
 
 function buildPopup(school) {
-  const typeLabel = school.type === "integrated" ? "Integrated School" : "Elementary School";
   return `
     <div class="popup-title">${school.name}</div>
-    <div class="popup-type" style="color:${markerColors[school.type]}">${typeLabel}</div>
     <a href="school.html?id=${school.id}" class="popup-btn">Open School</a>
   `;
 }
@@ -47,12 +45,7 @@ function renderSchoolList() {
     li.className = `school-item${school.id === activeSchoolId ? " active" : ""}`;
     li.dataset.id = school.id;
 
-    const typeLabel = school.type === "integrated" ? "Integrated" : "Elementary";
-
-    li.innerHTML = `
-      <div class="school-type ${school.type}">${typeLabel}</div>
-      <div class="school-name">${school.name}</div>
-    `;
+    li.innerHTML = `<div class="school-name">${school.name}</div>`;
 
     li.addEventListener("click", () => focusSchool(school.id));
 

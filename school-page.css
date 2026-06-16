@@ -24,26 +24,60 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 3rem 1.5rem;
-  gap: 2.5rem;
+  justify-content: flex-start;
+  padding: 2rem 1.5rem 3rem;
+  gap: 1.5rem;
+  position: relative;
+  overflow: auto;
+  min-height: 0;
   background:
-    radial-gradient(circle at 20% 30%, var(--color-blue-light) 0%, transparent 50%),
-    radial-gradient(circle at 80% 70%, var(--color-orange-light) 0%, transparent 50%),
-    var(--color-bg);
+    radial-gradient(circle at 15% 20%, rgba(29, 78, 216, 0.06) 0%, transparent 45%),
+    radial-gradient(circle at 85% 80%, rgba(249, 115, 22, 0.06) 0%, transparent 45%),
+    #faf6ef;
+}
+
+.school-decor {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.decor-icon {
+  position: absolute;
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  opacity: 0.14;
+  line-height: 1;
+  user-select: none;
+}
+
+.decor-icon--1 { top: 8%; left: 6%; transform: rotate(-12deg); }
+.decor-icon--2 { top: 14%; right: 10%; transform: rotate(18deg); }
+.decor-icon--3 { top: 42%; left: 4%; transform: rotate(8deg); }
+.decor-icon--4 { top: 55%; right: 5%; transform: rotate(-20deg); }
+.decor-icon--5 { bottom: 18%; left: 12%; transform: rotate(15deg); }
+.decor-icon--6 { bottom: 10%; right: 14%; transform: rotate(-8deg); }
+.decor-icon--7 { top: 28%; left: 18%; transform: rotate(-25deg); }
+.decor-icon--8 { bottom: 32%; right: 18%; transform: rotate(10deg); }
+
+.school-main > .welcome-card,
+.school-main > .action-buttons {
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
 }
 
 .welcome-card {
   text-align: center;
   background: var(--color-surface);
-  padding: 3rem 2.5rem;
+  padding: 2.25rem 2.5rem 2.5rem;
   border-radius: 20px;
   box-shadow: var(--shadow-md);
   border: 1px solid var(--color-border);
-  max-width: 640px;
+  max-width: 720px;
   width: 100%;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .welcome-card::before {
@@ -54,6 +88,13 @@
   right: 0;
   height: 5px;
   background: linear-gradient(90deg, var(--color-blue) 0%, var(--color-orange) 100%);
+  border-radius: 20px 20px 0 0;
+  z-index: 0;
+}
+
+.welcome-card > * {
+  position: relative;
+  z-index: 1;
 }
 
 .welcome-label {
@@ -69,62 +110,117 @@
   font-size: clamp(1.5rem, 4vw, 2.25rem);
   font-weight: 700;
   line-height: 1.3;
-  background: linear-gradient(135deg, var(--color-blue-dark) 0%, var(--color-blue) 50%, var(--color-orange) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin-bottom: 1rem;
+  color: var(--color-blue-dark) !important;
+  -webkit-text-fill-color: var(--color-blue-dark) !important;
+  margin-bottom: 2rem;
 }
 
-.welcome-type {
-  display: inline-block;
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  padding: 0.3rem 0.75rem;
-  border-radius: 50px;
+.school-heads {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--color-border);
+  min-height: 180px;
 }
 
-.welcome-type.integrated {
-  background: var(--color-blue-light);
+.head-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.65rem;
+  min-width: 140px;
+}
+
+.head-photo {
+  width: 135px;
+  height: 135px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid var(--color-blue);
+  box-shadow: 0 4px 14px rgba(29, 78, 216, 0.2);
+  background: linear-gradient(135deg, var(--color-blue-light) 0%, var(--color-orange-light) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.head-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.head-placeholder {
+  font-size: 2.25rem;
+  line-height: 1;
   color: var(--color-blue);
 }
 
-.welcome-type.elementary {
-  background: var(--color-orange-light);
+.head-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1.35;
+}
+
+.head-role {
+  font-size: 0.78rem;
+  font-weight: 600;
   color: var(--color-orange-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 .action-buttons {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 1rem;
-  max-width: 800px;
+  grid-template-columns: 1fr;
+  gap: 0.85rem;
+  max-width: 720px;
   width: 100%;
 }
 
 .action-btn {
   min-height: 56px;
+  padding: 0.9rem 1.25rem;
   border: 2px solid var(--color-border);
   border-radius: var(--radius);
   background: var(--color-surface);
   cursor: pointer;
-  transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 700;
+  line-height: 1.35;
+  text-align: center;
+  color: var(--color-text);
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s, color 0.2s;
 }
 
 .action-btn:hover {
   border-color: var(--color-orange);
+  color: var(--color-blue-dark);
   box-shadow: 0 4px 12px rgba(249, 115, 22, 0.15);
   transform: translateY(-2px);
 }
 
 .action-btn:nth-child(odd) {
-  border-top: 3px solid var(--color-blue);
+  border-left: 4px solid var(--color-blue);
 }
 
 .action-btn:nth-child(even) {
-  border-top: 3px solid var(--color-orange);
+  border-left: 4px solid var(--color-orange);
+}
+
+@media (min-width: 900px) {
+  .action-buttons {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .action-buttons .action-btn:last-child {
+    grid-column: 1 / -1;
+  }
 }
 
 @media (max-width: 768px) {
@@ -145,31 +241,38 @@
   }
 
   .school-main {
-    padding: 1.5rem 1rem 2rem;
-    gap: 1.75rem;
+    padding: 1.25rem 1rem 2rem;
+    gap: 1.25rem;
     justify-content: flex-start;
     padding-bottom: max(2rem, env(safe-area-inset-bottom));
   }
 
-  .action-buttons {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.75rem;
-  }
-
-  .action-btn {
-    min-height: 52px;
-  }
-
-  .action-buttons .action-btn:last-child {
-    grid-column: span 2;
-  }
-
   .welcome-card {
-    padding: 2rem 1.25rem;
+    padding: 1.75rem 1.25rem 1.75rem;
   }
 
   .welcome-label {
     font-size: 0.85rem;
+  }
+
+  .welcome-title {
+    margin-bottom: 1.5rem;
+  }
+
+  .head-photo {
+    width: 118px;
+    height: 118px;
+  }
+
+  .decor-icon {
+    opacity: 0.1;
+    font-size: 1.5rem;
+  }
+
+  .action-btn {
+    min-height: 52px;
+    font-size: 0.78rem;
+    padding: 0.85rem 1rem;
   }
 }
 
@@ -178,19 +281,15 @@
     font-size: 0.92rem;
   }
 
-  .action-buttons {
-    grid-template-columns: 1fr;
-  }
-
-  .action-buttons .action-btn:last-child {
-    grid-column: span 1;
-  }
-
-  .action-btn {
-    min-height: 48px;
-  }
-
   .welcome-card {
-    padding: 1.5rem 1rem;
+    padding: 1.5rem 1rem 1.25rem;
+  }
+
+  .school-heads {
+    gap: 1.25rem;
+  }
+
+  .head-card {
+    min-width: 120px;
   }
 }

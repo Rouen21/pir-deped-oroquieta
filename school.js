@@ -1,23 +1,76 @@
+function renderHeadPhoto(head) {
+  if (head.image) {
+    return `<img src="${head.image}" alt="${head.name}" class="head-image" loading="eager" />`;
+  }
+
+  return `<span class="head-placeholder" aria-hidden="true">👤</span>`;
+}
+
+function renderSchoolHeads(heads) {
+  const container = document.getElementById("school-heads");
+  if (!container) return;
+
+  const headList = Array.isArray(heads) ? heads.filter(Boolean) : [];
+
+  if (headList.length === 0) {
+    container.innerHTML = `
+      <article class="head-card">
+        <div class="head-photo"><span class="head-placeholder" aria-hidden="true">👤</span></div>
+        <p class="head-name">School Head</p>
+      </article>
+    `;
+    return;
+  }
+
+  container.innerHTML = headList
+    .map(
+      (head) => `
+        <article class="head-card">
+          <div class="head-photo">${renderHeadPhoto(head)}</div>
+          <p class="head-name">${head.name}</p>
+          ${head.role ? `<p class="head-role">${head.role}</p>` : ""}
+        </article>
+      `
+    )
+    .join("");
+}
+
+function renderActionButtons() {
+  const container = document.getElementById("action-buttons");
+  if (!container) return;
+
+  container.innerHTML = schoolActions
+    .map(
+      (label) => `
+        <button type="button" class="action-btn">${label}</button>
+      `
+    )
+    .join("");
+}
+
 function initSchoolPage() {
   const params = new URLSearchParams(window.location.search);
   const id = Number(params.get("id"));
-  const school = schools.find((s) => s.id === id);
+  const schoolNameElement = document.getElementById("school-name");
+
+  const schoolList = Array.isArray(schools) ? schools : [];
+  const school = schoolList.find((s) => s.id === id) || schoolList[0];
 
   if (!school) {
-    window.location.href = "index.html";
+    if (schoolNameElement) schoolNameElement.textContent = "School";
+    renderSchoolHeads([]);
+    renderActionButtons();
     return;
   }
 
   document.title = `${school.name} — PIR Dashboard`;
+  if (schoolNameElement) {
+    schoolNameElement.textContent = school.name;
+    schoolNameElement.style.webkitTextFillColor = "#1e3a8a";
+  }
 
-  const nameEl = document.getElementById("school-name");
-  const typeEl = document.getElementById("school-type");
-
-  nameEl.textContent = school.name;
-
-  const typeLabel = school.type === "integrated" ? "Integrated School" : "Elementary School";
-  typeEl.textContent = typeLabel;
-  typeEl.className = `welcome-type ${school.type}`;
+  renderSchoolHeads(school.heads);
+  renderActionButtons();
 }
 
 document.addEventListener("DOMContentLoaded", initSchoolPage);
