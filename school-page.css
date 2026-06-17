@@ -77,16 +77,16 @@
   max-width: 720px;
   width: 100%;
   position: relative;
-  overflow: visible;
+  overflow: hidden;
 }
 
 .welcome-card::before {
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 5px;
+  top: -1px;
+  left: -1px;
+  right: -1px;
+  height: 6px;
   background: linear-gradient(90deg, var(--color-blue) 0%, var(--color-orange) 100%);
   border-radius: 20px 20px 0 0;
   z-index: 0;
@@ -198,11 +198,19 @@
   transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s, color 0.2s;
 }
 
-.action-btn:hover {
+.action-btn:hover:not(:disabled) {
   border-color: var(--color-orange);
   color: var(--color-blue-dark);
   box-shadow: 0 4px 12px rgba(249, 115, 22, 0.15);
   transform: translateY(-2px);
+}
+
+.action-btn--disabled,
+.action-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
 }
 
 .action-btn:nth-child(odd) {

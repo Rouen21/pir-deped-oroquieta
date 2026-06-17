@@ -35,17 +35,32 @@ function renderSchoolHeads(heads) {
     .join("");
 }
 
-function renderActionButtons() {
+function renderActionButtons(documents = {}) {
   const container = document.getElementById("action-buttons");
   if (!container) return;
 
   container.innerHTML = schoolActions
-    .map(
-      (label) => `
-        <button type="button" class="action-btn">${label}</button>
-      `
-    )
+    .map((action) => {
+      const url = documents[action.key];
+      const disabled = !url;
+
+      return `
+        <button
+          type="button"
+          class="action-btn${disabled ? " action-btn--disabled" : ""}"
+          data-url="${url || ""}"
+          ${disabled ? "disabled aria-disabled=\"true\"" : ""}
+        >${action.label}</button>
+      `;
+    })
     .join("");
+
+  container.querySelectorAll(".action-btn:not([disabled])").forEach((button) => {
+    button.addEventListener("click", () => {
+      const url = button.dataset.url;
+      if (url) window.open(url, "_blank", "noopener,noreferrer");
+    });
+  });
 }
 
 function initSchoolPage() {
@@ -59,7 +74,7 @@ function initSchoolPage() {
   if (!school) {
     if (schoolNameElement) schoolNameElement.textContent = "School";
     renderSchoolHeads([]);
-    renderActionButtons();
+    renderActionButtons({});
     return;
   }
 
@@ -70,7 +85,7 @@ function initSchoolPage() {
   }
 
   renderSchoolHeads(school.heads);
-  renderActionButtons();
+  renderActionButtons(school.documents || {});
 }
 
 document.addEventListener("DOMContentLoaded", initSchoolPage);
