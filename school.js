@@ -66,7 +66,27 @@ function renderActionButtons(documents = {}) {
 function initSchoolPage() {
   const params = new URLSearchParams(window.location.search);
   const id = Number(params.get("id"));
+  const districtId = Number(params.get("district"));
   const schoolNameElement = document.getElementById("school-name");
+  const headsContainer = document.getElementById("school-heads");
+
+  const districtList = Array.isArray(districts) ? districts : [];
+  const district = districtList.find((d) => d.id === districtId);
+
+  if (district) {
+    document.title = `${district.name} — PIR Dashboard`;
+    if (schoolNameElement) {
+      schoolNameElement.textContent = district.name;
+      schoolNameElement.style.webkitTextFillColor = "#1e3a8a";
+    }
+
+    if (headsContainer) {
+      headsContainer.style.display = "none";
+    }
+
+    renderActionButtons(district.documents || {});
+    return;
+  }
 
   const schoolList = Array.isArray(schools) ? schools : [];
   const school = schoolList.find((s) => s.id === id) || schoolList[0];

@@ -8,6 +8,23 @@ const schoolActions = [
   { label: "CATCH-UP PLAN", key: "catchUpPlan" },
 ];
 
+const districts = [
+  {
+    id: 6,
+    name: "District 6",
+    schoolIds: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+    documents: {
+      schoolProfile: "",
+      performanceDashboard: "",
+      characterizationEnrollment: "",
+      natResult: "",
+      characterizationNat: "",
+      issuesAndConcern: "",
+      catchUpPlan: "",
+    },
+  },
+];
+
 const schools = [
   {
     id: 1,
