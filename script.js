@@ -33,7 +33,7 @@ function createIcon(type, highlighted = false) {
 
 function buildPopup(school, useDistrictView = false) {
   const href = useDistrictView ? "school.html?district=6" : `school.html?id=${school.id}`;
-  const ctaLabel = useDistrictView ? "View District" : "Open School";
+  const ctaLabel = useDistrictView ? "View District" : "View School";
 
   return `
     <div class="popup-title">${school.name}</div>
