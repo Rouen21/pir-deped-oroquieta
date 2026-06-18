@@ -35,11 +35,11 @@ function renderSchoolHeads(heads) {
     .join("");
 }
 
-function renderActionButtons(documents = {}) {
+function renderActionButtons(documents = {}, actions = schoolActions) {
   const container = document.getElementById("action-buttons");
   if (!container) return;
 
-  container.innerHTML = schoolActions
+  container.innerHTML = actions
     .map((action) => {
       const url = documents[action.key];
       const disabled = !url;
@@ -84,7 +84,7 @@ function initSchoolPage() {
       headsContainer.style.display = "none";
     }
 
-    renderActionButtons(district.documents || {});
+    renderActionButtons(district.documents || {}, districtActions);
     return;
   }
 

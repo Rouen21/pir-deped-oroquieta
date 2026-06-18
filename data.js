@@ -8,19 +8,29 @@ const schoolActions = [
   { label: "CATCH-UP PLAN", key: "catchUpPlan" },
 ];
 
+const districtActions = [
+  { label: "SCHOOL LOCATION", key: "schoolProfile" },
+  { label: "PERFORMANCE DASHBOARD & TARGETS-ENROLLMENT", key: "performanceDashboard" },
+  { label: "CHARACTERIZATION ON ENROLLMENT", key: "characterizationEnrollment" },
+  { label: "NAT RESULT", key: "natResult" },
+  { label: "CHARACTERIZATION ON NAT RESULT", key: "characterizationNat" },
+  { label: "ISSUES AND CONCERN", key: "issuesAndConcern" },
+  { label: "CATCH-UP PLAN", key: "catchUpPlan" },
+];
+
 const districts = [
   {
     id: 6,
     name: "District 6",
     schoolIds: [1, 2, 3, 4, 5, 6, 7, 8, 9],
     documents: {
-      schoolProfile: "",
-      performanceDashboard: "",
-      characterizationEnrollment: "",
-      natResult: "",
-      characterizationNat: "",
-      issuesAndConcern: "",
-      catchUpPlan: "",
+      schoolProfile: "https://drive.google.com/file/d/1LOwVbYl3aCcnVn2lDgcKZ1Vw1J7RKJVP/view?usp=drive_link",
+      performanceDashboard: "https://drive.google.com/file/d/1ieGRGGisViVzzIW4TEXwbYNQShMtgZSQ/view?usp=drive_link",
+      characterizationEnrollment: "https://drive.google.com/file/d/1VjYra_OAjAYWNDRTf60Y8-H6ofJaeDXk/view?usp=drive_link",
+      natResult: "https://drive.google.com/file/d/1NpBfhr3Ft8CWOoudNCwpXID8KDpdM0Od/view?usp=drive_link",
+      characterizationNat: "https://drive.google.com/file/d/1tVt_C7dM5X8yBfHZP0-brCjy_Lg5jc90/view?usp=drive_link",
+      issuesAndConcern: "https://drive.google.com/file/d/1CpDMIoK6prhVL_VXLE0tpqRROuoDOaEt/view?usp=drive_link",
+      catchUpPlan: "https://drive.google.com/file/d/1otJP3FdJsvUPee8YSEvosiY7TIVCTW7C/view?usp=drive_link",
     },
   },
 ];
@@ -68,7 +78,7 @@ const schools = [
     coords: [8.44622, 123.78955],
     type: "elementary",
     heads: [
-      { name: "Joel C. Acalain", role: "School Head", image: "" },
+      { name: "Joel C. Acalain", role: "School Head", image: "images/heads/Joel C. Acalain.png" },
     ],
     documents: {
       schoolProfile: "https://drive.google.com/file/d/1IhJzibxwAwDD8l285uF3MuLf7m9JTePC/view?usp=drive_link",
@@ -158,7 +168,7 @@ const schools = [
     coords: [8.41514, 123.74497],
     type: "elementary",
     heads: [
-      { name: "Irene R. Narit", role: "School Head", image: "" },
+      { name: "Irene R. Narit", role: "School Head", image: "images/heads/Irene R. Narit.png" },
     ],
     documents: {
       schoolProfile: "https://drive.google.com/file/d/1Lo5-L9Z78di3zyy8aNG6PlVItftOhI4Y/view?usp=drive_link",
